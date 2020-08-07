@@ -172,7 +172,7 @@ jobs:
       - run: |
           git clone https://github.com/crystal-lang/distribution-scripts.git ~/distribution-scripts
           cd ~/distribution-scripts
-          git checkout 8fb2b3c26f192677f35032d76de94b3290afc452
+          git checkout ef2eecd0a66964b3c6e4d504e4f3972f09640fbf
       # persist relevant information for build process
       - run: |
           cd ~/distribution-scripts
@@ -182,8 +182,10 @@ jobs:
           # What to build
           echo "export CRYSTAL_SHA1=$CIRCLE_SHA1" >> build.env
 
+          echo "export SHARDS_OPTS=--ignore-crystal-version" >> build.env
+
           # Which previous version use
-          export PREVIOUS_CRYSTAL_BASE_URL="https://github.com/crystal-lang/crystal/releases/download/0.35.1/crystal-0.35.1-1"
+          export PREVIOUS_CRYSTAL_BASE_URL="https://51617-6887813-gh.circle-artifacts.com/0/dist_packages/crystal-ci-update-llvm-10-dev-1"
           echo "export PREVIOUS_CRYSTAL_RELEASE_LINUX64_TARGZ=${PREVIOUS_CRYSTAL_BASE_URL}-linux-x86_64.tar.gz" >> build.env
           echo "export PREVIOUS_CRYSTAL_RELEASE_LINUX32_TARGZ=${PREVIOUS_CRYSTAL_BASE_URL}-linux-i686.tar.gz" >> build.env
           echo "export PREVIOUS_CRYSTAL_RELEASE_DARWIN_TARGZ=${PREVIOUS_CRYSTAL_BASE_URL}-darwin-x86_64.tar.gz" >> build.env
